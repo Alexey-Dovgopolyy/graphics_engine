@@ -1,0 +1,36 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Fortran module files
+*.mod
+*.smod
+
+# Visual studio files
+*.vcxproj.user
+*.VC.db
+*.VC.opendb
+*.ipch
+*.suo
+*.vs
+
+*.pdb
+
+# Dirs
+opengl_project/Debug/
+opengl_project/Release/
+opengl_libs/glfw_source/
+opengl_libs/glm/
+opengl_libs/stb-master/
+opengl_libs/assimp-4.1.0/
+opengl_libs/assimp-5.0.1/
+opengl_project/x64/
