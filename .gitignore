@@ -26,11 +26,11 @@
 *.pdb
 
 # Dirs
-opengl_project/Debug/
-opengl_project/Release/
+graph_engine/Debug/
+graph_engine/Release/
 opengl_libs/glfw_source/
 opengl_libs/glm/
 opengl_libs/stb-master/
 opengl_libs/assimp-4.1.0/
 opengl_libs/assimp-5.0.1/
-opengl_project/x64/
+graph_engine/x64/
