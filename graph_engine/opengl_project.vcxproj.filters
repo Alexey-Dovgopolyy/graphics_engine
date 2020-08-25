@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Math">
+      <UniqueIdentifier>{6ff864e2-6d22-466b-9405-816db1968737}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{384c115a-884f-49f8-b9d1-b1c8e4ea328e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{f561f803-cffb-428e-96a9-bcb3b8ff246e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Behaviour">
+      <UniqueIdentifier>{00711a7f-418b-49e8-9509-a4341c80d6b5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="glad.c" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="GEMath.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="ManagersProvider.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="TexturesManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraQuat.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="Time.cpp" />
+    <ClCompile Include="Object.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="LightSource.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneObject.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="LightSourceManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Behaviour.cpp">
+      <Filter>Objects\Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectBehaviour.cpp">
+      <Filter>Objects\Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="LightBehaviour.cpp">
+      <Filter>Objects\Behaviour</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Defines.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="stb_image_impl.h" />
+    <ClInclude Include="GEMath.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="ManagersProvider.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="TexturesManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraQuat.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Time.h" />
+    <ClInclude Include="Object.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="LightSource.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneObject.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="LightSourceManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Behaviour.h">
+      <Filter>Objects\Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectBehaviour.h">
+      <Filter>Objects\Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="LightBehaviour.h">
+      <Filter>Objects\Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectType.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
