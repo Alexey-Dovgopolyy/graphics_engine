@@ -36,10 +36,14 @@ void Mesh::Draw(Shader& shader)
         else if (name == "texture_height")
             number = std::to_string(heightNr++); // transfer unsigned int to stream
 
-        //shader.setInt(("material." + name + number).c_str(), i);
-        shader.setInt((name + number).c_str(), i);
+        std::string locationStr = "material." + name + number;
+        shader.setInt(locationStr.c_str(), i);
+        //shader.setInt((name + number).c_str(), i);
         glBindTexture(GL_TEXTURE_2D, mTextures[i].id);
     }
+
+    shader.setFloat("material.shininess", 32.f);
+
     glActiveTexture(GL_TEXTURE0);
 
     // draw mesh

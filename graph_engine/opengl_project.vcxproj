@@ -160,6 +160,7 @@
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="LightBehaviour.cpp" />
     <ClCompile Include="LightSource.cpp" />
+    <ClCompile Include="LightSourceData.cpp" />
     <ClCompile Include="LightSourceManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ManagersProvider.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="LightBehaviour.h" />
     <ClInclude Include="LightSource.h" />
+    <ClInclude Include="LightSourceData.h" />
     <ClInclude Include="LightSourceManager.h" />
     <ClInclude Include="ManagersProvider.h" />
     <ClInclude Include="Mesh.h" />

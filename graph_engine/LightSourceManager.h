@@ -1,26 +1,26 @@
 #pragma once
 
 #include "Defines.h"
-#include "Object.h"
+#include "LightSourceData.h"
 
-struct LightSourceData
-{
-    //GEVec3 mPosition = GEVec3(0.f, 0.f, 0.f);
-    Object* mLightObject = nullptr;
+#include <vector>
 
-    GEVec3 getPosition() const;
-};
+class Object;
 
 class LightSourceManager
 {
 public:
-    void registerLightSource(GEVec3 pos);
-    void registerLightSource(LightSourceData lightSource);
-    void registerLightSource(Object* object);
+    void init();
 
+    LightSourceData& registerLightSource(Object* object);
+
+    void setDirectionLight();
+
+    const LightSourceData& getDirectionLight() const;
     const std::vector<LightSourceData>& getLights() const;
 
 private:
     std::vector<LightSourceData> mLights;
+    LightSourceData mDirectionLight;
 };
 

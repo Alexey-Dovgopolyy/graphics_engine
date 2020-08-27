@@ -59,6 +59,7 @@
     <ClCompile Include="LightBehaviour.cpp">
       <Filter>Objects\Behaviour</Filter>
     </ClCompile>
+    <ClCompile Include="LightSourceData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Defines.h" />
@@ -109,5 +110,6 @@
     <ClInclude Include="ObjectType.h">
       <Filter>Objects</Filter>
     </ClInclude>
+    <ClInclude Include="LightSourceData.h" />
   </ItemGroup>
 </Project>
