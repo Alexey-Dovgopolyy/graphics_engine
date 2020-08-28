@@ -1,6 +1,7 @@
 #pragma once
 
 #include "glm/glm.hpp"
+#include "glm/gtc/quaternion.hpp"
 
 using GEVec2 = glm::vec2;
 using GEVec3 = glm::vec3;
