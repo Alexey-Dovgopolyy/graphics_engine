@@ -1,6 +1,8 @@
 #pragma once
 
 struct GLFWwindow;
+class Mesh;
+class Shader;
 
 class Graphics
 {
@@ -27,6 +29,9 @@ public:
     static void framebufferSizeCallback(GLFWwindow* window, int width, int height);
     static void mouseCallback(GLFWwindow* window, double xpos, double ypos);
     static void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);
+
+    static void initMesh(Mesh& mesh);
+    static void drawMesh(Mesh& mesh, Shader& shader);
 
 private:
     GLFWwindow* mWindow = nullptr;
