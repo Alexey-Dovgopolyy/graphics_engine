@@ -4,6 +4,7 @@
 #include "ManagersProvider.h"
 #include "Camera.h"
 #include "Graphics.h"
+#include "Window.h"
 
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
@@ -30,8 +31,8 @@ GEMat4x4 GEMath::getPerspectiveMat()
     Camera* camera = provider.getCamera();
     float zoom = camera->getZoom();
 
-    Graphics* graphics = provider.getGraphics();
-    float scrRatio = graphics->getAspectRatio();
+    Window* window = provider.getWindow();
+    float scrRatio = window->getAspectRatio();
 
     glm::mat4 proj = glm::perspective(glm::radians(zoom), scrRatio, 0.1f, 100.0f);
     return proj;

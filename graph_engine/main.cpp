@@ -4,6 +4,7 @@
 #include "ManagersProvider.h"
 #include "Scene.h"
 #include "Graphics.h"
+#include "Window.h"
 
 int main()
 {
@@ -14,14 +15,15 @@ int main()
     Scene scene;
     scene.init();
 
+    Window* window = managersProvider.getWindow();
     Graphics* graphics = managersProvider.getGraphics();
 
-    while (graphics->windowShouldClose() == false)
+    while (window->windowShouldClose() == false)
     {
         Time::updateTick();
         float dt = Time::getDt();
 
-        graphics->processInput();
+        window->processInput();
         graphics->beforeUpdate();
 
         scene.update(dt);

@@ -78,18 +78,18 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>D:\it\projects\opengl_project\opengl_libs\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\it\projects\opengl_project\opengl_libs\libs;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\..\third_party_libs\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\..\third_party_libs\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\it\projects\opengl_project\opengl_libs\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\it\projects\opengl_project\opengl_libs\libs;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\..\third_party_libs\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\..\third_party_libs\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>D:\it\projects\opengl_project\opengl_libs\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\it\projects\opengl_project\opengl_libs\libs;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\..\third_party_libs\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\..\third_party_libs\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -157,6 +157,7 @@
     <ClCompile Include="CameraQuat.cpp" />
     <ClCompile Include="GEMath.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="GLWindow.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="LightBehaviour.cpp" />
     <ClCompile Include="LightSource.cpp" />
@@ -173,6 +174,7 @@
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="TexturesManager.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Behaviour.h" />
@@ -180,6 +182,7 @@
     <ClInclude Include="CameraQuat.h" />
     <ClInclude Include="Defines.h" />
     <ClInclude Include="GEMath.h" />
+    <ClInclude Include="GLWindow.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="LightBehaviour.h" />
     <ClInclude Include="LightSource.h" />
@@ -200,6 +203,7 @@
     <ClInclude Include="TexturesManager.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Vertex.h" />
+    <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

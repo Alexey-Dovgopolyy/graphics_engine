@@ -7,6 +7,7 @@ class Camera;
 class GEMath;
 class Graphics;
 class LightSourceManager;
+class Window;
 
 class ManagersProvider
 {
@@ -24,6 +25,7 @@ public:
     GEMath* getMath() const;
     Graphics* getGraphics() const;
     LightSourceManager* getLightManager() const;
+    Window* getWindow();
 
 private:
     ManagersProvider() = default;
@@ -36,5 +38,6 @@ private:
     std::unique_ptr<GEMath> mMath;
     std::unique_ptr<Graphics> mGraphics;
     std::unique_ptr<LightSourceManager> mLightsManager;
+    std::unique_ptr<Window> mWindow;
 };
 

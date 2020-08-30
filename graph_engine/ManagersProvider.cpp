@@ -5,6 +5,7 @@
 #include "GEMath.h"
 #include "Graphics.h"
 #include "LightSourceManager.h"
+#include "GLWindow.h"
 
 ManagersProvider& ManagersProvider::getInstance()
 {
@@ -19,11 +20,12 @@ void ManagersProvider::create()
     mMath = std::make_unique<GEMath>();
     mGraphics = std::make_unique<Graphics>();
     mLightsManager = std::make_unique<LightSourceManager>();
+    mWindow = std::make_unique<GLWindow>();
 }
 
 void ManagersProvider::init()
 {
-    mGraphics->init();
+    mWindow->init();
 }
 
 void ManagersProvider::cleanup()
@@ -53,4 +55,9 @@ Graphics* ManagersProvider::getGraphics() const
 LightSourceManager* ManagersProvider::getLightManager() const
 {
     return mLightsManager.get();
+}
+
+Window* ManagersProvider::getWindow()
+{
+    return mWindow.get();
 }
