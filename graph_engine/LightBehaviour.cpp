@@ -20,3 +20,8 @@ void LightBehaviour::update(float dt)
 {
     // empty
 }
+
+const char* LightBehaviour::getShaderName()
+{
+    return "lightSource";
+}

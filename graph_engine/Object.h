@@ -14,7 +14,7 @@ class Behaviour;
 class Object
 {
 public:
-    Object(const char* path, const char* shader, ObjectType type);
+    Object(const char* path, ObjectType type);
     virtual void init(const char* path, const char* shader);
 
     virtual void update(float dt);

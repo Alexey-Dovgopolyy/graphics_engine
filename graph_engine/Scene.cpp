@@ -7,11 +7,11 @@ bool Scene::init()
     mObjects.reserve(10);
 
     // TODO rework objects creation
-    mObjects.emplace_back("models/my_cube/my_cube.obj", "shaders/lightSource", ObjectType::lightSource);
+    mObjects.emplace_back("models/my_cube/my_cube.obj", ObjectType::lightSource);
     mObjects.back().move(GEVec3(5.f, 5.f, 0.f));
     mObjects.back().scale(GEVec3(0.2f, 0.2f, 0.2f));
 
-    mObjects.emplace_back("models/my_cube/my_cube.obj", "shaders/model_shader", ObjectType::sceneObject);
+    mObjects.emplace_back("models/my_cube/my_cube.obj", ObjectType::sceneObject);
     mObjects.back().move(GEVec3(0.f, 0.f, 0.f));
 
     //mTestObj = &(mObjects.back());

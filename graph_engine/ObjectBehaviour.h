@@ -12,5 +12,6 @@ public:
 
     void init() override;
     void update(float dt) override;
+    const char* getShaderName() override;
 };
 

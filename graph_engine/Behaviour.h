@@ -12,6 +12,7 @@ public:
 
     virtual void init() = 0;
     virtual void update(float dt) = 0;
+    virtual const char* getShaderName() = 0;
 
     static void setBehaviour(Object* owner, ObjectType type);
 

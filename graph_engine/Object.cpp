@@ -4,11 +4,12 @@
 
 #include "Camera.h"
 
-Object::Object(const char* path, const char* shader, ObjectType type)
+Object::Object(const char* path, ObjectType type)
     : mType(type)
 {
     Behaviour::setBehaviour(this, mType);
-    init(path, shader);
+    std::string shader = std::string("shaders/") + mBehaviour->getShaderName();
+    init(path, shader.c_str());
 }
 
 void Object::init(const char* path, const char* shader)

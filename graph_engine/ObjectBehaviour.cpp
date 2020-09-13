@@ -46,3 +46,8 @@ void ObjectBehaviour::update(float dt)
         shader.setFloat(lightStr + "quadratic", light.getQuadratic());
     }
 }
+
+const char* ObjectBehaviour::getShaderName()
+{
+    return "model_shader";
+}
