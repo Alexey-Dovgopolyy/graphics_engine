@@ -1,18 +1,26 @@
 #include "Scene.h"
 
 #include "ManagersProvider.h"
+#include "JsonManager.h"
 
 bool Scene::init()
 {
     mObjects.reserve(10);
 
-    // TODO rework objects creation
-    mObjects.emplace_back("models/my_cube/my_cube.obj", ObjectType::lightSource);
-    mObjects.back().move(GEVec3(5.f, 5.f, 0.f));
-    mObjects.back().scale(GEVec3(0.2f, 0.2f, 0.2f));
+    std::vector<ObjectData> objects = JsonManager::readScene();
+    for (const ObjectData& objectData : objects)
+    {
+        const std::string& model = objectData.mModel;
+        ObjectType type = objectData.mType;
+        GEVec3 position = objectData.mPosition;
+        GEVec3 rotation = objectData.mRotation;
+        GEVec3 scale = objectData.mScale;
 
-    mObjects.emplace_back("models/my_cube/my_cube.obj", ObjectType::sceneObject);
-    mObjects.back().move(GEVec3(0.f, 0.f, 0.f));
+        mObjects.emplace_back(model.c_str(), type);
+        mObjects.back().move(position);
+        mObjects.back().rotate(rotation);
+        mObjects.back().scale(scale);
+    }
 
     //mTestObj = &(mObjects.back());
 

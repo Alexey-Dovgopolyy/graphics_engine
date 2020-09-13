@@ -8,6 +8,7 @@ class GEMath;
 class Graphics;
 class LightSourceManager;
 class Window;
+class JsonManager;
 
 class ManagersProvider
 {
@@ -25,7 +26,8 @@ public:
     GEMath* getMath() const;
     Graphics* getGraphics() const;
     LightSourceManager* getLightManager() const;
-    Window* getWindow();
+    Window* getWindow() const;
+    JsonManager* getJsonManager() const;
 
 private:
     ManagersProvider() = default;
@@ -39,5 +41,6 @@ private:
     std::unique_ptr<Graphics> mGraphics;
     std::unique_ptr<LightSourceManager> mLightsManager;
     std::unique_ptr<Window> mWindow;
+    std::unique_ptr<JsonManager> mJsonManager;
 };
 

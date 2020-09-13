@@ -6,6 +6,7 @@
 #include "Graphics.h"
 #include "LightSourceManager.h"
 #include "GLWindow.h"
+#include "JsonManager.h"
 
 ManagersProvider& ManagersProvider::getInstance()
 {
@@ -21,6 +22,7 @@ void ManagersProvider::create()
     mGraphics = std::make_unique<Graphics>();
     mLightsManager = std::make_unique<LightSourceManager>();
     mWindow = std::make_unique<GLWindow>();
+    mJsonManager = std::make_unique<JsonManager>();
 }
 
 void ManagersProvider::init()
@@ -57,7 +59,12 @@ LightSourceManager* ManagersProvider::getLightManager() const
     return mLightsManager.get();
 }
 
-Window* ManagersProvider::getWindow()
+Window* ManagersProvider::getWindow() const
 {
     return mWindow.get();
+}
+
+JsonManager* ManagersProvider::getJsonManager() const
+{
+    return mJsonManager.get();
 }

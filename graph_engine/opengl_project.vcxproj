@@ -159,6 +159,7 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="GLWindow.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="JsonManager.cpp" />
     <ClCompile Include="LightBehaviour.cpp" />
     <ClCompile Include="LightSource.cpp" />
     <ClCompile Include="LightSourceData.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="GEMath.h" />
     <ClInclude Include="GLWindow.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="JsonManager.h" />
     <ClInclude Include="LightBehaviour.h" />
     <ClInclude Include="LightSource.h" />
     <ClInclude Include="LightSourceData.h" />
