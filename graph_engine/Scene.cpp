@@ -7,7 +7,9 @@ bool Scene::init()
 {
     mObjects.reserve(10);
 
-    std::vector<ObjectData> objects = JsonManager::readScene();
+    JsonManager* jsonManager = ManagersProvider::getInstance().getJsonManager();
+    std::vector<ObjectData> objects = jsonManager->readScene();
+
     for (const ObjectData& objectData : objects)
     {
         const std::string& model = objectData.mModel;

@@ -1,0 +1,17 @@
+{
+    "shaders":
+	[
+		{
+			"name": "model",
+			"path": "shaders/model_shader"
+		},
+		{
+			"name": "lightSource",
+			"path": "shaders/lightSource"
+		},
+		{
+			"name": "outline",
+			"path": "shaders/outline"
+		}
+	]
+}

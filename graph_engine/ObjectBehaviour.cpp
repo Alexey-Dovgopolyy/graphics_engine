@@ -49,5 +49,5 @@ void ObjectBehaviour::update(float dt)
 
 const char* ObjectBehaviour::getShaderName()
 {
-    return "model_shader";
+    return "model";
 }

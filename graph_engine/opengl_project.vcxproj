@@ -172,7 +172,9 @@
     <ClCompile Include="ObjectBehaviour.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneObject.cpp" />
+    <ClCompile Include="SelectedObject.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="ShadersManager.cpp" />
     <ClCompile Include="TexturesManager.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -198,7 +200,9 @@
     <ClInclude Include="ObjectType.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneObject.h" />
+    <ClInclude Include="SelectedObject.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="ShadersManager.h" />
     <ClInclude Include="stb_image_impl.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Texture.h" />

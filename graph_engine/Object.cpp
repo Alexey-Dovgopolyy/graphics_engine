@@ -1,5 +1,6 @@
 #include "Object.h"
 #include "ManagersProvider.h"
+#include "ShadersManager.h"
 #include "GEMath.h"
 
 #include "Camera.h"
@@ -8,7 +9,7 @@ Object::Object(const char* path, ObjectType type)
     : mType(type)
 {
     Behaviour::setBehaviour(this, mType);
-    std::string shader = std::string("shaders/") + mBehaviour->getShaderName();
+    const std::string& shader = mBehaviour->getShaderName();
     init(path, shader.c_str());
 }
 
@@ -17,9 +18,10 @@ void Object::init(const char* path, const char* shader)
     mTransform = GEMat4x4(1.f);
     mModel.loadModel(path);
 
-    std::string vertShader = std::string(shader) + ".vert";
-    std::string fragShader = std::string(shader) + ".frag";
-    mShader.init(vertShader.c_str(), fragShader.c_str());
+    ShadersManager* shadersManager = ManagersProvider::getInstance().getShadersManager();
+    std::string shaderPath = shadersManager->getShaderPath(shader);
+
+    mShader = ManagersProvider::getInstance().getShadersManager()->createShader(shader, shaderPath);
 
     mBehaviour->init();
 }   
@@ -117,6 +119,11 @@ GEVec3 Object::getAngles()
 void Object::setBehaviour(std::unique_ptr<Behaviour>& behaviour)
 {
     mBehaviour = std::move(behaviour);
+}
+
+void Object::setShader(const std::string& name)
+{
+    mShader = ManagersProvider::getInstance().getShadersManager()->getShader(name);
 }
 
 Shader& Object::getShader()

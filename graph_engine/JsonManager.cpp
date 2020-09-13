@@ -1,48 +1,31 @@
 #include "JsonManager.h"
 
-#include "json/rapidjson/document.h"
+#include "ManagersProvider.h"
+#include "ShadersManager.h"
 
 #include <fstream>
 
 bool JsonManager::init()
 {
-    return false;
+    bool sceneResult = parse("resources/scene.json", mSceneDocument);
+    bool configResult = parse("resources/config.json", mConfigDocument);
+
+    bool isResourcesValid = (sceneResult && configResult);
+    if (isResourcesValid == false)
+    {
+        return false;
+    }
+
+    readShaders();
+
+    return true;
 }
 
 std::vector<ObjectData> JsonManager::readScene()
 {
-    // TODO refactor
-
     std::vector<ObjectData> sceneObjects;
 
-    const char* fileName = "resources/scene.json";
-
-    std::ifstream inputStream(fileName);
-    if (inputStream.is_open() == false)
-    {
-        printf("ERROR: Cannot open scene file '%s'", fileName);
-        return sceneObjects;
-    }
-
-    inputStream.seekg(0, inputStream.end);
-    int fileSize = static_cast<int>(inputStream.tellg());
-    inputStream.seekg(0, inputStream.beg);
-
-    char* fileData = new char[fileSize];
-    memset(fileData, 0, fileSize);
-
-    inputStream.read(fileData, fileSize);
-    inputStream.close();
-    
-    rapidjson::Document document;
-    document.Parse(fileData);
-
-    if (document.IsObject() == false)
-    {
-        return sceneObjects;
-    }
-
-    const rapidjson::Value& sceneValue = document["objects"];
+    const rapidjson::Value& sceneValue = mSceneDocument["objects"];
     assert(sceneValue.IsArray());
 
     for (rapidjson::SizeType i = 0; i < sceneValue.Size(); i++)
@@ -87,11 +70,71 @@ std::vector<ObjectData> JsonManager::readScene()
         }
     }
 
-    delete[] fileData;
-
     return sceneObjects;
 }
 
 void JsonManager::writeScene()
 {
+}
+
+void JsonManager::readShaders()
+{
+    ShadersManager* shadersManager = ManagersProvider::getInstance().getShadersManager();
+
+    const rapidjson::Value& shadersValue = mConfigDocument["shaders"];
+    assert(shadersValue.IsArray());
+
+    for (rapidjson::SizeType i = 0; i < shadersValue.Size(); i++)
+    {
+        const rapidjson::Value& shaderVal = shadersValue[i];
+        if (shaderVal.IsObject())
+        {
+            bool isObjectValid = true;
+            isObjectValid = shaderVal.HasMember("name") && isObjectValid;
+            isObjectValid = shaderVal.HasMember("path") && isObjectValid;
+
+            if (isObjectValid == false)
+            {
+                printf("WARNING: Not valid object. Index %d", i);
+                continue;
+            }
+
+            std::string shaderName = shaderVal["name"].GetString();
+            std::string path = shaderVal["path"].GetString();
+
+            shadersManager->initShader(shaderName, path);
+        }
+    }
+}
+
+bool JsonManager::parse(const char* path, rapidjson::Document& document)
+{
+    std::ifstream inputStream(path);
+    if (inputStream.is_open() == false)
+    {
+        printf("ERROR: Cannot open scene file '%s'", path);
+        return false;
+    }
+
+    inputStream.seekg(0, inputStream.end);
+    int fileSize = static_cast<int>(inputStream.tellg());
+    inputStream.seekg(0, inputStream.beg);
+
+    char* fileData = new char[fileSize];
+    memset(fileData, 0, fileSize);
+
+    inputStream.read(fileData, fileSize);
+    inputStream.close();
+
+    document.Parse(fileData);
+
+    delete[] fileData;
+
+    if (document.IsObject() == false)
+    {
+        printf("ERROR: Cannot parse file");
+        return false;
+    }
+
+    return true;
 }

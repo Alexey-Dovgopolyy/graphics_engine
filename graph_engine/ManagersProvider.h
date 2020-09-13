@@ -9,6 +9,7 @@ class Graphics;
 class LightSourceManager;
 class Window;
 class JsonManager;
+class ShadersManager;
 
 class ManagersProvider
 {
@@ -28,6 +29,7 @@ public:
     LightSourceManager* getLightManager() const;
     Window* getWindow() const;
     JsonManager* getJsonManager() const;
+    ShadersManager* getShadersManager() const;
 
 private:
     ManagersProvider() = default;
@@ -42,5 +44,6 @@ private:
     std::unique_ptr<LightSourceManager> mLightsManager;
     std::unique_ptr<Window> mWindow;
     std::unique_ptr<JsonManager> mJsonManager;
+    std::unique_ptr<ShadersManager> mShadersManager;
 };
 

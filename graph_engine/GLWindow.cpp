@@ -45,6 +45,7 @@ bool GLWindow::init()
     mLastY = mWindowHeight / 2.f;
 
     glEnable(GL_DEPTH_TEST);
+    glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 
     return true;
 }

@@ -3,6 +3,8 @@
 #include "ObjectType.h"
 #include "Defines.h"
 
+#include "json/rapidjson/document.h"
+
 #include <string>
 #include <vector>
 
@@ -19,8 +21,17 @@ class JsonManager
 {
 public:
     bool init();
-    static std::vector<ObjectData> readScene();
+
+    std::vector<ObjectData> readScene();
     void writeScene();
 
+    void readShaders();
+
+private:
+    static bool parse(const char* path, rapidjson::Document& document);
+
+private:
+    rapidjson::Document mSceneDocument;
+    rapidjson::Document mConfigDocument;
 };
 
