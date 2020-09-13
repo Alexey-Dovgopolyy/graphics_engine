@@ -126,6 +126,11 @@ void Object::setShader(const std::string& name)
     mShader = ManagersProvider::getInstance().getShadersManager()->getShader(name);
 }
 
+void Object::setShader(Shader& shader)
+{
+    mShader = shader;
+}
+
 Shader& Object::getShader()
 {
     return mShader;

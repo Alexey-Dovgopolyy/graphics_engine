@@ -8,6 +8,7 @@
 #include "GLWindow.h"
 #include "JsonManager.h"
 #include "ShadersManager.h"
+#include "SelectedObjectManager.h"
 
 ManagersProvider& ManagersProvider::getInstance()
 {
@@ -25,11 +26,13 @@ void ManagersProvider::create()
     mWindow = std::make_unique<GLWindow>();
     mJsonManager = std::make_unique<JsonManager>();
     mShadersManager = std::make_unique<ShadersManager>();
+    mSelectedObjectsManager = std::make_unique<SelectedObjectManager>();
 }
 
 void ManagersProvider::init()
 {
     mWindow->init();
+    mGraphics->init();
     mJsonManager->init();
     mShadersManager->init();
 }
@@ -76,4 +79,9 @@ JsonManager* ManagersProvider::getJsonManager() const
 ShadersManager* ManagersProvider::getShadersManager() const
 {
     return mShadersManager.get();
+}
+
+SelectedObjectManager* ManagersProvider::getSelectedObjectManager() const
+{
+    return mSelectedObjectsManager.get();
 }

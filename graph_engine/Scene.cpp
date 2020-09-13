@@ -2,6 +2,7 @@
 
 #include "ManagersProvider.h"
 #include "JsonManager.h"
+#include "SelectedObjectManager.h"
 
 bool Scene::init()
 {
@@ -24,7 +25,10 @@ bool Scene::init()
         mObjects.back().scale(scale);
     }
 
-    //mTestObj = &(mObjects.back());
+    mSelectedObjectsManager = ManagersProvider::getInstance().getSelectedObjectManager();
+
+    Object* testObj = &(mObjects.front());
+    mSelectedObjectsManager->setSelectedObject(testObj);
 
     return true;
 }
@@ -41,8 +45,13 @@ void Scene::draw()
 {
     for (Object& object : mObjects)
     {
-        object.draw();
+        if (&object != mSelectedObjectsManager->getSelectedObject())
+        {
+            object.draw();
+        }
     }
+
+    mSelectedObjectsManager->drawFrame();
 }
 
 void Scene::clean()

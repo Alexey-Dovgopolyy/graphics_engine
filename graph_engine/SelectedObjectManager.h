@@ -4,10 +4,11 @@
 
 class Object;
 
-class SelectedObject
+class SelectedObjectManager
 {
 public:
     void setSelectedObject(Object* object);
+    Object* getSelectedObject() const;
 
     void move(GEVec3 move);
     void rotate(float angle, GEVec3 axis);

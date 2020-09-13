@@ -13,6 +13,10 @@ public:
     void afterUpdate();
     void cleanup();
 
+    void beforeDrawOutlinedObject();
+    void beforeDrawOutline();
+    void afterDrawOutline();
+
     static void initMesh(Mesh& mesh);
     static void drawMesh(Mesh& mesh, Shader& shader);
 

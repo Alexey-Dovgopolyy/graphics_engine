@@ -35,6 +35,7 @@ public:
     void setBehaviour(std::unique_ptr<Behaviour>& behaviour);
 
     void setShader(const std::string& name);
+    void setShader(Shader& shader);
     Shader& getShader();
 
 protected:

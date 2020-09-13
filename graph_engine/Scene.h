@@ -2,6 +2,8 @@
 
 #include "Object.h"
 
+class SelectedObjectManager;
+
 class Scene
 {
 public:
@@ -12,6 +14,7 @@ public:
 
 private:
     std::vector<Object> mObjects;
+    SelectedObjectManager* mSelectedObjectsManager = nullptr;
     //Object* mTestObj = nullptr;
 };
 

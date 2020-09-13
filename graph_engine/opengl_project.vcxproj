@@ -172,7 +172,7 @@
     <ClCompile Include="ObjectBehaviour.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneObject.cpp" />
-    <ClCompile Include="SelectedObject.cpp" />
+    <ClCompile Include="SelectedObjectManager.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShadersManager.cpp" />
     <ClCompile Include="TexturesManager.cpp" />
@@ -200,7 +200,7 @@
     <ClInclude Include="ObjectType.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneObject.h" />
-    <ClInclude Include="SelectedObject.h" />
+    <ClInclude Include="SelectedObjectManager.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShadersManager.h" />
     <ClInclude Include="stb_image_impl.h" />

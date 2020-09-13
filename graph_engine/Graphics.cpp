@@ -17,6 +17,12 @@
 
 bool Graphics::init()
 {
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
+    glEnable(GL_STENCIL_TEST);
+    glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
+    glStencilMask(0x00);
+
     return true;
 }
 
@@ -37,6 +43,26 @@ void Graphics::afterUpdate()
 void Graphics::cleanup()
 {
     glfwTerminate();
+}
+
+void Graphics::beforeDrawOutlinedObject()
+{
+    glStencilFunc(GL_ALWAYS, 1, 0xFF);
+    glStencilMask(0xFF);
+}
+
+void Graphics::beforeDrawOutline()
+{
+    glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
+    glStencilMask(0x00);
+    glDisable(GL_DEPTH_TEST);
+}
+
+void Graphics::afterDrawOutline()
+{
+    glStencilMask(0xFF);
+    glStencilFunc(GL_ALWAYS, 1, 0xFF);
+    glEnable(GL_DEPTH_TEST);
 }
 
 void Graphics::initMesh(Mesh& mesh)
