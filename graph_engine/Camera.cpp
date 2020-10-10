@@ -33,6 +33,15 @@ Camera::Camera(float posX, float posY, float posZ, float upX, float upY, float u
     updateCameraVectors();
 }
 
+void Camera::init()
+{
+}
+
+void Camera::setMovementSpeed(float speed)
+{
+    mMovementSpeed = speed;
+}
+
 // returns the view matrix calculated using Euler Angles and the LookAt Matrix
 glm::mat4 Camera::getViewMatrix()
 {

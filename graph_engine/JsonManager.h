@@ -27,6 +27,8 @@ public:
 
     void readShaders();
 
+    void readMovementSpeed();
+
 private:
     static bool parse(const char* path, rapidjson::Document& document);
 

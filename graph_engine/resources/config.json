@@ -13,5 +13,6 @@
 			"name": "outline",
 			"path": "shaders/outline"
 		}
-	]
+	],
+	"camera_speed": 20.0
 }

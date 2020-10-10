@@ -2,6 +2,7 @@
 
 #include "ManagersProvider.h"
 #include "ShadersManager.h"
+#include "Camera.h"
 
 #include <fstream>
 
@@ -17,6 +18,7 @@ bool JsonManager::init()
     }
 
     readShaders();
+    readMovementSpeed();
 
     return true;
 }
@@ -105,6 +107,15 @@ void JsonManager::readShaders()
             shadersManager->initShader(shaderName, path);
         }
     }
+}
+
+void JsonManager::readMovementSpeed()
+{
+    const rapidjson::Value& speedValue = mConfigDocument["camera_speed"];
+    float cameraSpeed = static_cast<float>(speedValue.GetDouble());
+
+    Camera* camera = ManagersProvider::getInstance().getCamera();
+    camera->setMovementSpeed(cameraSpeed);
 }
 
 bool JsonManager::parse(const char* path, rapidjson::Document& document)

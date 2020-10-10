@@ -35,6 +35,7 @@ void ManagersProvider::init()
     mGraphics->init();
     mJsonManager->init();
     mShadersManager->init();
+    mCamera->init();
 }
 
 void ManagersProvider::cleanup()
