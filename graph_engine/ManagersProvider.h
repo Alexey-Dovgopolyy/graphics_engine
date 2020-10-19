@@ -11,6 +11,7 @@ class Window;
 class JsonManager;
 class ShadersManager;
 class SelectedObjectManager;
+class ShadowMapRenderer;
 
 class ManagersProvider
 {
@@ -32,6 +33,7 @@ public:
     JsonManager* getJsonManager() const;
     ShadersManager* getShadersManager() const;
     SelectedObjectManager* getSelectedObjectManager() const;
+    ShadowMapRenderer* getShadowRenderer() const;
 
 private:
     ManagersProvider() = default;
@@ -48,5 +50,6 @@ private:
     std::unique_ptr<JsonManager> mJsonManager;
     std::unique_ptr<ShadersManager> mShadersManager;
     std::unique_ptr<SelectedObjectManager> mSelectedObjectsManager;
+    std::unique_ptr<ShadowMapRenderer> mShadowRenderer;
 };
 

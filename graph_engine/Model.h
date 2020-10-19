@@ -15,6 +15,7 @@ public:
     void loadModel(const std::string& path);
 
     void draw(Shader& shader);
+    void drawShadow();
 
 private:
     std::vector<Mesh> mMeshes;

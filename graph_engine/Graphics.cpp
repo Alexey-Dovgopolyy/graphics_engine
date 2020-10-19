@@ -6,6 +6,7 @@
 #include "ManagersProvider.h"
 #include "Camera.h"
 #include "Time.h"
+#include "ShadowMapRenderer.h"
 
 #include "Vertex.h"
 #include "Texture.h"
@@ -136,11 +137,70 @@ void Graphics::drawMesh(Mesh& mesh, Shader& shader)
         glBindTexture(GL_TEXTURE_2D, textures[i].id);
     }
 
+    ShadowMapRenderer* shadowRenderer = ManagersProvider::getInstance().getShadowRenderer();
+    unsigned int depthMap = shadowRenderer->getDepthMap();
+    GEMat4x4 lightSpaceMatrix = shadowRenderer->getLightSpaceMatrix();
+    shader.setMat4("lightSpaceMatrix", lightSpaceMatrix);
+    
+    shader.setInt("shadowMap", textures.size());
+    glActiveTexture(GL_TEXTURE0 + textures.size());
+    glBindTexture(GL_TEXTURE_2D, depthMap);
+
     shader.setFloat("material.shininess", 32.f); // TODO do not hardcode
 
     glActiveTexture(GL_TEXTURE0);
 
     glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(indices.size()), GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+}
+
+void Graphics::drawMeshShadow(Mesh& mesh)
+{
+    unsigned int VAO = mesh.getVAO();
+    const std::vector<unsigned int>& indices = mesh.getIndices();
+
+    glBindVertexArray(VAO);
+    glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(indices.size()), GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
+}
+
+void Graphics::drawDebugShadow(Shader& shader)
+{
+    static unsigned int quadVAO = 0;
+    static unsigned int quadVBO;
+
+    ShadowMapRenderer* shadowRenderer = ManagersProvider::getInstance().getShadowRenderer();
+    unsigned int depthMap = shadowRenderer->getDepthMap();
+    shader.setInt("depthMap", 0);
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    if (quadVAO == 0)
+    {
+        float quadVertices[] = {
+            // positions        // texture Coords
+            -1.0f,  1.0f, 0.0f, 0.0f, 1.0f,
+            -1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
+             1.0f,  1.0f, 0.0f, 1.0f, 1.0f,
+             1.0f, -1.0f, 0.0f, 1.0f, 0.0f,
+        };
+        // setup plane VAO
+        glGenVertexArrays(1, &quadVAO);
+        glGenBuffers(1, &quadVBO);
+        glBindVertexArray(quadVAO);
+        glBindBuffer(GL_ARRAY_BUFFER, quadVBO);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
+        glEnableVertexAttribArray(0);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+        glEnableVertexAttribArray(1);
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    }
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, depthMap);
+
+    glBindVertexArray(quadVAO);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     glBindVertexArray(0);
 }

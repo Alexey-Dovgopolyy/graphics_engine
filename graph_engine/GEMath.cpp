@@ -45,6 +45,16 @@ GEMat4x4 GEMath::getViewMat()
     return view;
 }
 
+GEMat4x4 GEMath::getViewMat(GEVec3 pos, GEVec3 dir, GEVec3 up)
+{
+    return glm::lookAt(pos, dir, up);
+}
+
+GEMat4x4 GEMath::ortho(float left, float right, float bottom, float top, float near, float far)
+{
+    return glm::ortho(left, right, bottom, top, near, far);
+}
+
 void GEMath::rotate(GEQuat& quat, GEVec3 angles)
 {
     GEVec3 anglesRad = glm::radians(angles);

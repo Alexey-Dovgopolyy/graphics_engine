@@ -5,6 +5,11 @@ void Window::swapButters()
     // empty
 }
 
+void Window::setupViewport()
+{
+    // empty
+}
+
 float Window::getWidth() const
 {
     return mWindowWidth;

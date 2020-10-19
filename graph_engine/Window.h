@@ -6,6 +6,7 @@ public:
     virtual void processInput() = 0;
     virtual bool windowShouldClose() const = 0;
     virtual void swapButters();
+    virtual void setupViewport();
 
     float getWidth() const;
     float getHeight() const;

@@ -12,6 +12,14 @@
 		{
 			"name": "outline",
 			"path": "shaders/outline"
+		},
+		{
+			"name": "shadowMap",
+			"path": "shaders/shadowMap"
+		},
+		{
+			"name": "debugShadowMap",
+			"path": "shaders/debugShadowMap"
 		}
 	],
 	"camera_speed": 20.0

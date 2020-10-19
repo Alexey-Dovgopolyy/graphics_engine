@@ -89,6 +89,13 @@ void GLWindow::swapButters()
     glfwSwapBuffers(mWindow);
 }
 
+void GLWindow::setupViewport()
+{
+    int width = static_cast<int>(mWindowWidth);
+    int height = static_cast<int>(mWindowHeight);
+    glViewport(0, 0, width, height);
+}
+
 void GLWindow::framebufferSizeCallback(GLFWwindow* window, int width, int height)
 {
     glViewport(0, 0, width, height);

@@ -19,6 +19,9 @@ public:
 
     static void initMesh(Mesh& mesh);
     static void drawMesh(Mesh& mesh, Shader& shader);
+    static void drawMeshShadow(Mesh& mesh);
+
+    static void drawDebugShadow(Shader& shader);
 
 private:
     GLFWwindow* mWindow = nullptr;

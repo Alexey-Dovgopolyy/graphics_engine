@@ -23,6 +23,14 @@ void Model::draw(Shader& shader)
     }
 }
 
+void Model::drawShadow()
+{
+    for (unsigned int i = 0; i < mMeshes.size(); i++)
+    {
+        mMeshes[i].drawShadow();
+    }
+}
+
 void Model::loadModel(const std::string& path)
 {
     mMeshes = ManagersProvider::getInstance().getTextureManager()->loadModel(path);

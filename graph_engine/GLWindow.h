@@ -12,6 +12,7 @@ public:
     void processInput() override;
     bool windowShouldClose() const override;
     void swapButters() override;
+    void setupViewport() override;
 
     static void framebufferSizeCallback(GLFWwindow* window, int width, int height);
     static void mouseCallback(GLFWwindow* window, double xpos, double ypos);

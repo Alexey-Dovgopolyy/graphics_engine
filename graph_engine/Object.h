@@ -19,6 +19,7 @@ public:
 
     virtual void update(float dt);
     void draw();
+    void drawShadow(GEMat4x4 mat);
 
     void move(GEVec3 offset);
     void rotateX(float angle);

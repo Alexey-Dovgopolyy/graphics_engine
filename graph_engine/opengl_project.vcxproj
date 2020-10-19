@@ -175,6 +175,7 @@
     <ClCompile Include="SelectedObjectManager.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShadersManager.cpp" />
+    <ClCompile Include="ShadowMapRenderer.cpp" />
     <ClCompile Include="TexturesManager.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -203,6 +204,7 @@
     <ClInclude Include="SelectedObjectManager.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShadersManager.h" />
+    <ClInclude Include="ShadowMapRenderer.h" />
     <ClInclude Include="stb_image_impl.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Texture.h" />

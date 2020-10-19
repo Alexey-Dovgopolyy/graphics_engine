@@ -20,6 +20,11 @@ void Mesh::Draw(Shader& shader)
     ManagersProvider::getInstance().getGraphics()->drawMesh(*this, shader);
 }
 
+void Mesh::drawShadow()
+{
+    ManagersProvider::getInstance().getGraphics()->drawMeshShadow(*this);
+}
+
 void Mesh::setupMesh()
 {
     ManagersProvider::getInstance().getGraphics()->initMesh(*this);

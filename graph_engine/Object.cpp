@@ -21,7 +21,8 @@ void Object::init(const char* path, const char* shader)
     ShadersManager* shadersManager = ManagersProvider::getInstance().getShadersManager();
     std::string shaderPath = shadersManager->getShaderPath(shader);
 
-    mShader = ManagersProvider::getInstance().getShadersManager()->createShader(shader, shaderPath);
+    //mShader = ManagersProvider::getInstance().getShadersManager()->createShader(shader, shaderPath);
+    mShader = ManagersProvider::getInstance().getShadersManager()->getShader(shader);
 
     mBehaviour->init();
 }   
@@ -30,6 +31,24 @@ void Object::update(float dt)
 {
     updateTransform();
 
+//     GEMath* math = ManagersProvider::getInstance().getMath();
+//     GEMat4x4 projection = math->getPerspectiveMat();
+//     GEMat4x4 view = math->getViewMat();
+// 
+//     mShader.use();
+// 
+//     Camera* camera = ManagersProvider::getInstance().getCamera();
+//     mShader.setVec3("viewPos", camera->getPosition());
+// 
+//     mShader.setMat4("projection", projection);
+//     mShader.setMat4("view", view);    
+//     mShader.setMat4("model", mTransform);
+// 
+//     mBehaviour->update(dt);
+}
+
+void Object::draw()
+{
     GEMath* math = ManagersProvider::getInstance().getMath();
     GEMat4x4 projection = math->getPerspectiveMat();
     GEMat4x4 view = math->getViewMat();
@@ -40,16 +59,20 @@ void Object::update(float dt)
     mShader.setVec3("viewPos", camera->getPosition());
 
     mShader.setMat4("projection", projection);
-    mShader.setMat4("view", view);    
+    mShader.setMat4("view", view);
     mShader.setMat4("model", mTransform);
 
-    mBehaviour->update(dt);
+    mBehaviour->update(0.f);
+
+    mModel.draw(mShader);
 }
 
-void Object::draw()
+void Object::drawShadow(GEMat4x4 mat)
 {
     mShader.use();
-    mModel.draw(mShader);
+    mShader.setMat4("lightSpaceMatrix", mat);
+    mShader.setMat4("model", mTransform);
+    mModel.drawShadow();
 }
 
 void Object::move(GEVec3 offset)

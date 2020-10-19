@@ -6,6 +6,8 @@ class SelectedObjectManager;
 
 class Scene
 {
+    friend class ShadowMapRenderer;
+
 public:
     bool init();
     void update(float dt);

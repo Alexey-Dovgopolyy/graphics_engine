@@ -17,6 +17,7 @@ public:
     Mesh(std::vector<Vertex>& vertices, std::vector<unsigned int>& indices, std::vector<Texture>& textures);
 
     void Draw(Shader& shader);
+    void drawShadow();
 
     void setVAO(unsigned int vao);
     void setVBO(unsigned int vbo);

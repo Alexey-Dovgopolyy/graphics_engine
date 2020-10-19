@@ -9,6 +9,7 @@
 #include "JsonManager.h"
 #include "ShadersManager.h"
 #include "SelectedObjectManager.h"
+#include "ShadowMapRenderer.h"
 
 ManagersProvider& ManagersProvider::getInstance()
 {
@@ -27,6 +28,7 @@ void ManagersProvider::create()
     mJsonManager = std::make_unique<JsonManager>();
     mShadersManager = std::make_unique<ShadersManager>();
     mSelectedObjectsManager = std::make_unique<SelectedObjectManager>();
+    mShadowRenderer = std::make_unique<ShadowMapRenderer>();
 }
 
 void ManagersProvider::init()
@@ -36,6 +38,7 @@ void ManagersProvider::init()
     mJsonManager->init();
     mShadersManager->init();
     mCamera->init();
+    mShadowRenderer->init();
 }
 
 void ManagersProvider::cleanup()
@@ -85,4 +88,9 @@ ShadersManager* ManagersProvider::getShadersManager() const
 SelectedObjectManager* ManagersProvider::getSelectedObjectManager() const
 {
     return mSelectedObjectsManager.get();
+}
+
+ShadowMapRenderer* ManagersProvider::getShadowRenderer() const
+{
+    return mShadowRenderer.get();
 }

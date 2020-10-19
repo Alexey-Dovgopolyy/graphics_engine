@@ -77,6 +77,7 @@
     <ClCompile Include="ShadersManager.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
+    <ClCompile Include="ShadowMapRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Defines.h" />
@@ -149,5 +150,6 @@
     <ClInclude Include="ShadersManager.h">
       <Filter>Manager</Filter>
     </ClInclude>
+    <ClInclude Include="ShadowMapRenderer.h" />
   </ItemGroup>
 </Project>

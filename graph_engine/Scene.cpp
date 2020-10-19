@@ -3,6 +3,10 @@
 #include "ManagersProvider.h"
 #include "JsonManager.h"
 #include "SelectedObjectManager.h"
+#include "ShadowMapRenderer.h"
+#include "LightSourceData.h"
+#include "LightSourceManager.h"
+#include "ShadersManager.h"
 
 bool Scene::init()
 {
@@ -43,15 +47,32 @@ void Scene::update(float dt)
 
 void Scene::draw()
 {
+    // 1. show debug shadow map
+    // 2. fix selected object frame drawing
+    // 3. refactor shadow map renderer
+
+    LightSourceManager* lightSourceManager = ManagersProvider::getInstance().getLightManager();
+    const LightSourceData& directionLight = lightSourceManager->getDirectionLight();
+    GEVec3 directLightPos = -(directionLight.getDirection() * 5.f);
+
+    ShadowMapRenderer* shadowMapRenderer = ManagersProvider::getInstance().getShadowRenderer();
+    shadowMapRenderer->renderShadowMap(directLightPos, *this);
+
+    //shadowMapRenderer->drawDebugShadowMap();
+
     for (Object& object : mObjects)
     {
-        if (&object != mSelectedObjectsManager->getSelectedObject())
+        //if (&object != mSelectedObjectsManager->getSelectedObject())
         {
             object.draw();
         }
+        //else
+        {
+            //mSelectedObjectsManager->drawFrame();
+        }
     }
 
-    mSelectedObjectsManager->drawFrame();
+    //mSelectedObjectsManager->drawFrame();
 }
 
 void Scene::clean()
