@@ -19,7 +19,7 @@ private:
     unsigned int mDepthMapFBO = 0;
     unsigned int mDepthMap = 0;
     float mNearPlane = 1.0f;
-    float mFarPlane = 20.5f;
+    float mFarPlane = 30.5f;
     GEMat4x4 mLightSpaceMatrix;
 };
 
