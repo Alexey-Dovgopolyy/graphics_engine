@@ -46,10 +46,16 @@ void Graphics::cleanup()
     glfwTerminate();
 }
 
+void Graphics::clearColorBuffer()
+{
+    glClear(GL_COLOR_BUFFER_BIT);
+}
+
 void Graphics::beforeDrawOutlinedObject()
 {
     glStencilFunc(GL_ALWAYS, 1, 0xFF);
     glStencilMask(0xFF);
+    glDisable(GL_DEPTH_TEST);
 }
 
 void Graphics::beforeDrawOutline()
@@ -64,6 +70,16 @@ void Graphics::afterDrawOutline()
     glStencilMask(0xFF);
     glStencilFunc(GL_ALWAYS, 1, 0xFF);
     glEnable(GL_DEPTH_TEST);
+}
+
+void Graphics::LockStencilBuffer()
+{
+    glStencilMask(0x00);
+}
+
+void Graphics::UnlockStencilBuffer()
+{
+    glStencilMask(0xFF);
 }
 
 void Graphics::initMesh(Mesh& mesh)
@@ -142,8 +158,8 @@ void Graphics::drawMesh(Mesh& mesh, Shader& shader)
     GEMat4x4 lightSpaceMatrix = shadowRenderer->getLightSpaceMatrix();
     shader.setMat4("lightSpaceMatrix", lightSpaceMatrix);
     
-    shader.setInt("shadowMap", textures.size());
-    glActiveTexture(GL_TEXTURE0 + textures.size());
+    shader.setInt("shadowMap", static_cast<int>(textures.size()));
+    glActiveTexture(GL_TEXTURE0 + static_cast<int>(textures.size()));
     glBindTexture(GL_TEXTURE_2D, depthMap);
 
     shader.setFloat("material.shininess", 32.f); // TODO do not hardcode

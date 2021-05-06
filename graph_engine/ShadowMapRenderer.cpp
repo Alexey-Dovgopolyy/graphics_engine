@@ -55,12 +55,12 @@ void ShadowMapRenderer::renderShadowMap(GEVec3 lightPos, Scene& scene)
     glBindFramebuffer(GL_FRAMEBUFFER, mDepthMapFBO);
     glClear(GL_DEPTH_BUFFER_BIT);
 
-    for (Object& object : scene.mObjects)
+    for (auto& object : scene.mObjects)
     {
-        Shader curShader = object.getShader();
-        object.setShader("shadowMap");
-        object.drawShadow(mLightSpaceMatrix);
-        object.setShader(curShader);
+        Shader curShader = object->getShader();
+		object->setShader("shadowMap");
+		object->drawShadow(mLightSpaceMatrix);
+		object->setShader(curShader);
     }
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);

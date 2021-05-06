@@ -13,9 +13,14 @@ public:
     void afterUpdate();
     void cleanup();
 
+    void clearColorBuffer();
+
     void beforeDrawOutlinedObject();
     void beforeDrawOutline();
     void afterDrawOutline();
+
+    void LockStencilBuffer();
+    void UnlockStencilBuffer();
 
     static void initMesh(Mesh& mesh);
     static void drawMesh(Mesh& mesh, Shader& shader);

@@ -15,7 +15,7 @@ public:
     void clean();
 
 private:
-    std::vector<Object> mObjects;
+    std::vector<std::unique_ptr<Object>> mObjects;
     SelectedObjectManager* mSelectedObjectsManager = nullptr;
     //Object* mTestObj = nullptr;
 };

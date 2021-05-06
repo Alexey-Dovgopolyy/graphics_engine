@@ -7,10 +7,11 @@
 #include "LightSourceData.h"
 #include "LightSourceManager.h"
 #include "ShadersManager.h"
+#include "Graphics.h"
 
 bool Scene::init()
 {
-    mObjects.reserve(10);
+    //mObjects.reserve(10);
 
     JsonManager* jsonManager = ManagersProvider::getInstance().getJsonManager();
     std::vector<ObjectData> objects = jsonManager->readScene();
@@ -23,15 +24,17 @@ bool Scene::init()
         GEVec3 rotation = objectData.mRotation;
         GEVec3 scale = objectData.mScale;
 
-        mObjects.emplace_back(model.c_str(), type);
-        mObjects.back().move(position);
-        mObjects.back().rotate(rotation);
-        mObjects.back().scale(scale);
+        std::unique_ptr<Object> newObject = std::make_unique<Object>(model.c_str(), type);
+		newObject->move(position);
+		newObject->rotate(rotation);
+		newObject->scale(scale);
+
+        mObjects.push_back(std::move(newObject));
     }
 
     mSelectedObjectsManager = ManagersProvider::getInstance().getSelectedObjectManager();
 
-    Object* testObj = &(mObjects.front());
+    Object* testObj = mObjects.front().get();
     mSelectedObjectsManager->setSelectedObject(testObj);
 
     return true;
@@ -39,17 +42,15 @@ bool Scene::init()
 
 void Scene::update(float dt)
 {
-    for (Object& object : mObjects)
+    for (auto& object : mObjects)
     {
-        object.update(dt);
+        object->update(dt);
     }
 }
 
 void Scene::draw()
 {
-    // 1. show debug shadow map
-    // 2. fix selected object frame drawing
-    // 3. refactor shadow map renderer
+    // refactor shadow map renderer
 
     LightSourceManager* lightSourceManager = ManagersProvider::getInstance().getLightManager();
     const LightSourceData& directionLight = lightSourceManager->getDirectionLight();
@@ -60,19 +61,14 @@ void Scene::draw()
 
     //shadowMapRenderer->drawDebugShadowMap();
 
-    for (Object& object : mObjects)
+    mSelectedObjectsManager->prepareStencilBuffer();
+
+    for (auto& object : mObjects)
     {
-        //if (&object != mSelectedObjectsManager->getSelectedObject())
-        {
-            object.draw();
-        }
-        //else
-        {
-            //mSelectedObjectsManager->drawFrame();
-        }
+        object->draw();   
     }
 
-    //mSelectedObjectsManager->drawFrame();
+    mSelectedObjectsManager->drawFrame();
 }
 
 void Scene::clean()

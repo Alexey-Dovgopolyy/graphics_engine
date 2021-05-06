@@ -13,6 +13,11 @@ Object* SelectedObjectManager::getSelectedObject() const
     return mSelectedObject;
 }
 
+bool SelectedObjectManager::isObjectSelected(Object* object) const
+{
+    return mSelectedObject == object;
+}
+
 void SelectedObjectManager::move(GEVec3 move)
 {
     if (mSelectedObject)
@@ -37,6 +42,23 @@ void SelectedObjectManager::scale(GEVec3 scale)
     }
 }
 
+void SelectedObjectManager::prepareStencilBuffer()
+{
+	if (mSelectedObject == nullptr)
+	{
+		return;
+	}
+
+	Graphics* graphics = ManagersProvider::getInstance().getGraphics();
+	graphics->beforeDrawOutlinedObject();
+
+	mSelectedObject->draw();
+
+    graphics->afterDrawOutline();
+    graphics->clearColorBuffer();
+    graphics->LockStencilBuffer();
+}
+
 void SelectedObjectManager::drawFrame()
 {
     if (mSelectedObject == nullptr)
@@ -45,10 +67,6 @@ void SelectedObjectManager::drawFrame()
     }
 
     Graphics* graphics = ManagersProvider::getInstance().getGraphics();
-    graphics->beforeDrawOutlinedObject();
-
-    mSelectedObject->draw();
-
     graphics->beforeDrawOutline();
 
     Shader currentShader = mSelectedObject->getShader();
